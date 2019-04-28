@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.IdNameEntity;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -48,6 +49,12 @@ public class UserController {
     public UserEntity addUser(@RequestBody UserEntity userEntity){
         userService.addUser(userEntity);
         return userEntity;
+    }
 
+    @RequestMapping(value = "update-name", method = RequestMethod.POST)
+    public UserEntity updateName(@RequestBody IdNameEntity idNameEntity){
+        userService.updateName(idNameEntity);
+        UserEntity userEntity = userService.queryUser(idNameEntity.getId());
+        return userEntity;
     }
 }

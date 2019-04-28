@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.IdNameEntity;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ public class UserService {
 
     public void addUser(UserEntity userEntity) {
         userMapper.addUser(userEntity);
+    }
+
+    public void updateName(IdNameEntity idNameEntity) {
+        userMapper.updateName(idNameEntity);
     }
 
 

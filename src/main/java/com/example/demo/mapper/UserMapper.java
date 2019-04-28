@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.entity.IdNameEntity;
 import com.example.demo.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,4 +14,6 @@ public interface UserMapper {
     List<UserEntity> selectAllUsers();
 
     void addUser(UserEntity userEntity);
+
+    void updateName(IdNameEntity idNameEntity);
 }

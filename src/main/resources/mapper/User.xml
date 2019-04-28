@@ -14,4 +14,8 @@
     <insert id="addUser" parameterType="com.example.demo.entity.UserEntity">
         INSERT INTO user VALUES(#{userEntity.id}, #{userEntity.name}, #{userEntity.dept}, #{userEntity.website}, #{userEntity.phone});
     </insert>
+
+    <update id="updateName" parameterType="com.example.demo.entity.IdNameEntity">
+        UPDATE user SET name = #{name} WHERE id = #{id};
+    </update>
 </mapper>
