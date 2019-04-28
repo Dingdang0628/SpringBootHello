@@ -3,7 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
-    <select id="selectUserById" resultType="com.example.demo.entity.UserEntity">
+    <select id="selectUserById" resultType="com.example.demo.entity.UserEntity" parameterType="Integer">
         SELECT id, name, dept, website, phone FROM user WHERE id = #{id}
     </select>
+
+    <select id="selectAllUsers" resultType="com.example.demo.entity.UserEntity">
+        SELECT * FROM user;
+    </select>
+
+    <insert id="addUser" parameterType="com.example.demo.entity.UserEntity">
+        INSERT INTO user VALUES(#{userEntity.id}, #{userEntity.name}, #{userEntity.dept}, #{userEntity.website}, #{userEntity.phone});
+    </insert>
 </mapper>

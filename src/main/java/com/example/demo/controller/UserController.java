@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "query")
+    @RequestMapping(value = "query", method = RequestMethod.GET)
     public UserEntity queryUser(@RequestParam Integer id) {
         UserEntity userEntity = userService.queryUser(id);
         try {
@@ -31,5 +31,23 @@ public class UserController {
             e.printStackTrace();
         }
         return userEntity;
+    }
+
+    @RequestMapping(value = "query-all", method = RequestMethod.GET)
+    public List<UserEntity> queryAllUser() {
+        List<UserEntity> userEntityList = userService.queryAllUser();
+        try {
+            LOGGER.info(OBJECT_MAPPER.writeValueAsString(userEntityList));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return userEntityList;
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public UserEntity addUser(@RequestBody UserEntity userEntity){
+        userService.addUser(userEntity);
+        return userEntity;
+
     }
 }
